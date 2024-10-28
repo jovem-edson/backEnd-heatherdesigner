@@ -3,7 +3,7 @@ import con from "./connection.js";
 
 export async function inserir(servico) {
     const comando = `
-        insert into tb_servico(titulo_tarefa, cliente, tag_tarefa, status_andamento, data_entrega) 
+        insert into tb_servico(titulo_tarefa, nome_cliente, tag_tarefa, status_andamento, data_entrega) 
 					        values (?, ?, ?, ?, ?)
     `
 
@@ -17,7 +17,7 @@ export async function alterar(id, servico) {
     const comando = `
         update tb_servico
            set titulo_tarefa            = ?,
-               cliente            = ?,
+               nome_cliente            = ?,
                tag_tarefa          = ?,
                status_andamento         = ?,
                data_entrega          = ?
@@ -35,7 +35,7 @@ export async function listar() {
     const comando = `
         select id_servico       id,
                titulo_tarefa            titulo_tarefa,
-               cliente            cliente,
+               nome_cliente            cliente,
                tag_tarefa          tag_tarefa,
                status_andamento         status,
                data_entrega          data_entrega
@@ -52,7 +52,7 @@ export async function buscarPorId(id) {
     const comando = `
         select id_servico       id,
                titulo_tarefa            titulo_tarefa,
-               cliente            cliente,
+               nome_cliente            cliente,
                tag_tarefa          tag_tarefa,
                status_andamento         status,
                data_entrega          data_entrega
