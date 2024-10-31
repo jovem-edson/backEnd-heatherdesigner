@@ -7,7 +7,7 @@ export async function inserir(servico) {
 					        values (?, ?, ?, ?, ?)
     `
 
-    let [info] = await con.query(comando, [servico.titulo, servico.cliente, servico.tag_tarefa, servico.status, servico.entrega]);
+    let [info] = await con.query(comando, [servico.titulo, servico.nomeCliente, servico.tag, servico.status, servico.dataEntrega]);
     return info.insertId;
 }
 
@@ -24,7 +24,7 @@ export async function alterar(id, servico) {
           where id_servico = ?
     `
 
-    let [info] = await con.query(comando, [servico.titulo, servico.cliente, servico.tag_tarefa, servico.status, servico.entrega, id]);
+    let [info] = await con.query(comando, [servico.titulo, servico.nomeCliente, servico.tag, servico.status, servico.dataEntrega, id]);
     return info.affectedRows;
 }
 
@@ -33,12 +33,12 @@ export async function alterar(id, servico) {
 
 export async function listar() {
     const comando = `
-        select id_servico       id,
-               titulo_tarefa            titulo_tarefa,
-               nome_cliente            cliente,
-               tag_tarefa          tag_tarefa,
+        select id_servico       id,  
+               titulo_tarefa            titulo,
+               nome_cliente            nomeCliente,
+               tag_tarefa          tag,
                status_andamento         status,
-               data_entrega          data_entrega
+               data_entrega          dataEntrega
           from tb_servico    `
 
     let [registros] = await con.query(comando);
@@ -50,12 +50,12 @@ export async function listar() {
 
 export async function buscarPorId(id) {
     const comando = `
-        select id_servico       id,
-               titulo_tarefa            titulo_tarefa,
-               nome_cliente            cliente,
-               tag_tarefa          tag_tarefa,
+        select id_servico       id,  
+               titulo_tarefa            titulo,
+               nome_cliente            nomeCliente,
+               tag_tarefa          tag,
                status_andamento         status,
-               data_entrega          data_entrega
+               data_entrega          dataEntrega
           from tb_servico         where id_servico = ?
     `
 
