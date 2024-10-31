@@ -39,7 +39,8 @@ export async function listar() {
                tag_tarefa          tag,
                status_andamento         status,
                data_entrega          dataEntrega
-          from tb_servico    `
+          from tb_servico
+          order by dataEntrega `
 
     let [registros] = await con.query(comando);
     return registros;
