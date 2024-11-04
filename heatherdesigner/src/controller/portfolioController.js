@@ -1,8 +1,8 @@
-import inserirPortfolio from "../service/portfolio/inserirPortfolio.js";
-import consultarPortfolio from "../service/portfolio/consultarPortfolio.js";
-import consultarPorIdPortfolio from "../service/portfolio/consultarPorIdPortfolio.js";
-import alterarPortfolio from "../service/portfolio/alterarPortfolio.js";
-import excluirPortfolio from "../service/portfolio/excluirPortfolio.js";
+import inserirPortfolio from "../service/portfolio/inserirService.js";
+import consultarPortfolio from "../service/portfolio/consultarService.js";
+import consultarPorIdPortfolio from "../service/portfolio/consultarPorIdService.js";
+import alterarPortfolio from "../service/portfolio/alterarService.js";
+import excluirPortfolio from "../service/portfolio/excluirService.js";
 
 
 import { Router } from "express";
