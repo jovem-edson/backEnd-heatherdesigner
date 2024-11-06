@@ -2,15 +2,16 @@ import con from "./connection.js";
 
 export async function inserir(mensagem) {
     const comando = `
-        INSERT INTO tb_mensagem (nome, email, assunto, corpo_mensagem) 
-        VALUES (?, ?, ?, ?)
+        INSERT INTO tb_mensagem (nome, email, assunto, corpo_mensagem, data_mensagem) 
+        VALUES (?, ?, ?, ?, ?)
     `;
 
     let [info] = await con.query(comando, [
         mensagem.nome, 
         mensagem.email, 
         mensagem.assunto, 
-        mensagem.corpo_mensagem
+        mensagem.corpo_mensagem,
+        mensagem.data_mensagem
     ]);
     return info.insertId;
 }
@@ -21,7 +22,8 @@ export async function alterar(id, mensagem) {
            SET nome = ?,
                email = ?,
                assunto = ?,
-               corpo_mensagem = ?
+               corpo_mensagem = ?,
+               data_mensagem = ?
          WHERE id_mensagem = ?
     `;
 
@@ -30,6 +32,7 @@ export async function alterar(id, mensagem) {
         mensagem.email, 
         mensagem.assunto, 
         mensagem.corpo_mensagem,
+        mensagem.data_mensagem,
         id
     ]);
     return info.affectedRows;
@@ -41,7 +44,8 @@ export async function listar() {
                nome,
                email,
                assunto,
-               corpo_mensagem
+               corpo_mensagem,
+               data_mensagem
           FROM tb_mensagem
     `;
 
@@ -55,7 +59,8 @@ export async function buscarPorId(id) {
                nome,
                email,
                assunto,
-               corpo_mensagem
+               corpo_mensagem,
+               data_mensagem
           FROM tb_mensagem
          WHERE id_mensagem = ?
     `;

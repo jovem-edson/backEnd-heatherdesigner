@@ -29,7 +29,8 @@ CREATE TABLE tb_mensagem (
     nome VARCHAR(255),
     email VARCHAR(255),
     assunto VARCHAR(255),
-    corpo_mensagem TEXT
+    corpo_mensagem TEXT,
+    data_mensagem DATE
 );
 
 INSERT INTO tb_login (ds_email, ds_senha) VALUES (
