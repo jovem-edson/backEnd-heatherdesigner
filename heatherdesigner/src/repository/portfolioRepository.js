@@ -4,13 +4,13 @@ export async function inserir(portfolio) {
     const comando = `
         INSERT INTO tb_portfolio (imagem, titulo, descricao, data_realizacao) 
         VALUES (?, ?, ?, ?)
-    `;
+    `
 
     let [info] = await con.query(comando, [
         portfolio.imagem, 
         portfolio.titulo, 
         portfolio.descricao, 
-        portfolio.data_realizacao
+        portfolio.dataRealizacao
     ]);
     return info.insertId;
 }
@@ -29,7 +29,7 @@ export async function alterar(id, portfolio) {
         portfolio.imagem, 
         portfolio.titulo, 
         portfolio.descricao, 
-        portfolio.data_realizacao,
+        portfolio.dataRealizacao,
         id
     ]);
     return info.affectedRows;
@@ -55,7 +55,7 @@ export async function buscarPorId(id) {
                imagem         ,
                titulo          ,
                descricao       ,
-               data_realizacao 
+               data_realizacao dataRealizacao
           FROM tb_portfolio
          WHERE id_portfolio = ?
     `;
