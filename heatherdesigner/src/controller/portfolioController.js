@@ -4,13 +4,13 @@ import consultarPorIdPortfolio from "../service/portfolio/consultarPorIdService.
 import alterarPortfolio from "../service/portfolio/alterarService.js";
 import excluirPortfolio from "../service/portfolio/excluirService.js";
 
-
+import { autenticar } from "../utils/jwt.js"; 
 import { Router } from "express";
 const endpoints = Router();
 
 
 // CREATE
-endpoints.post('/portfolio', async (req, resp) => {
+endpoints.post('/portfolio',autenticar, async (req, resp) => {
     try {
         let portfolio = req.body
 
@@ -30,7 +30,7 @@ endpoints.post('/portfolio', async (req, resp) => {
 
 // READ
 
-endpoints.get('/portfolio', async (req, resp) => {
+endpoints.get('/portfolio',autenticar, async (req, resp) => {
     try {
         let portfolios = await consultarPortfolio();
         resp.send(portfolios);
@@ -44,7 +44,7 @@ endpoints.get('/portfolio', async (req, resp) => {
 })
 
 // READ BY ID
-endpoints.get('/portfolio/:id', async (req, resp) => {
+endpoints.get('/portfolio/:id',autenticar, async (req, resp) => {
     try {
         let idParaConsultar = Number(req.params.id);
 
@@ -59,7 +59,7 @@ endpoints.get('/portfolio/:id', async (req, resp) => {
 })
 
 // UPDATE
-endpoints.put('/portfolio/:id', async (req, resp) => {
+endpoints.put('/portfolio/:id',autenticar, async (req, resp) => {
     try {
         let corpoParaAlterar = req.body;
 

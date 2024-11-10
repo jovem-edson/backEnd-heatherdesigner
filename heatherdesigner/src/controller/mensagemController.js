@@ -6,11 +6,13 @@ import excluirMensagem from "../service/mensagem/excluirService.js";
 
 
 import { Router } from "express";
+import { autenticar } from "../utils/jwt.js";
+
 const endpoints = Router();
 
 
 // CREATE
-endpoints.post('/mensagem', async (req, resp) => {
+endpoints.post('/mensagem', autenticar, async (req, resp) => {
     try {
         let mensagem = req.body
 
@@ -30,7 +32,7 @@ endpoints.post('/mensagem', async (req, resp) => {
 
 // READ
 
-endpoints.get('/mensagem', async (req, resp) => {
+endpoints.get('/mensagem', autenticar, async (req, resp) => {
     try {
         let mensagens = await consultarMensagem();
         resp.send(mensagens);
@@ -44,7 +46,7 @@ endpoints.get('/mensagem', async (req, resp) => {
 })
 
 // READ BY ID
-endpoints.get('/mensagem/:id', async (req, resp) => {
+endpoints.get('/mensagem/:id', autenticar, async (req, resp) => {
     try {
         let idParaConsultar = Number(req.params.id);
 
@@ -59,7 +61,7 @@ endpoints.get('/mensagem/:id', async (req, resp) => {
 })
 
 // UPDATE
-endpoints.put('/mensagem/:id', async (req, resp) => {
+endpoints.put('/mensagem/:id', autenticar, async (req, resp) => {
     try {
         let corpoParaAlterar = req.body;
 

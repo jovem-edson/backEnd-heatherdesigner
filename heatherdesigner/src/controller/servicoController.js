@@ -5,12 +5,13 @@ import alterarService from "../service/servico/alterarService.js";
 import excluirService from "../service/servico/excluirService.js";
 
 
+import { autenticar } from "../utils/jwt.js"; 
 import { Router } from "express";
 const endpoints = Router();
 
 
 // CREATE
-endpoints.post('/servico', async (req, resp) => {
+endpoints.post('/servico',autenticar, async (req, resp) => {
     try {
         let servico = req.body
 
@@ -30,7 +31,7 @@ endpoints.post('/servico', async (req, resp) => {
 
 // READ
 
-endpoints.get('/servico', async (req, resp) => {
+endpoints.get('/servico',autenticar, async (req, resp) => {
     try {
         let servicos = await consultarService();
         resp.send(servicos);
@@ -44,7 +45,7 @@ endpoints.get('/servico', async (req, resp) => {
 })
 
 // READ BY ID
-endpoints.get('/servico/:id', async (req, resp) => {
+endpoints.get('/servico/:id',autenticar, async (req, resp) => {
     try {
         let idParaConsultar = Number(req.params.id);
 
@@ -59,7 +60,7 @@ endpoints.get('/servico/:id', async (req, resp) => {
 })
 
 // UPDATE
-endpoints.put('/servico/:id', async (req, resp) => {
+endpoints.put('/servico/:id',autenticar, async (req, resp) => {
     try {
         let corpoParaAlterar = req.body;
 
