@@ -73,3 +73,31 @@ export async function excluir(id) {
     let [info] = await con.query(comando, [id]);
     return info.affectedRows;
 }
+
+export async function alterarCapaPortfolio(id, caminho) {
+    const comando = `
+    UPDATE tb_portfolio
+       SET imagem = ?
+     WHERE id_portfolio = ?
+`
+
+let resposta = await con.query(comando, [caminho, id]);
+let info = resposta[0];
+
+let linhasAfetadas = info.affectedRows;
+return linhasAfetadas;
+}
+
+// No arquivo consultarPortfolio.js (backend)
+// export async function consultarPortfolio() {
+//     const portfolios = await db.query(`
+//         SELECT id_portfolio, titulo, descricao, data_realizacao, imagem
+//         FROM tb_portfolio
+//     `);
+    
+//     return portfolios.map(portfolio => ({
+//         ...portfolio,
+//         imagem: portfolio.imagem ? `/storage/capaPorfolio/${portfolio.imagem}` : null
+//     }));
+// }
+
