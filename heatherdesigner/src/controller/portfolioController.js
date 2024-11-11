@@ -25,7 +25,7 @@ endpoints.post('/portfolio', autenticar, async (req, resp) => {
 });
 
 // READ
-endpoints.get('/portfolio', autenticar, async (req, resp) => {
+endpoints.get('/portfolio', async (req, resp) => {
     try {
         let portfolios = await consultarPortfolio();
         resp.send(portfolios);
