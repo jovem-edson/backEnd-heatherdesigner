@@ -11,6 +11,7 @@ CREATE TABLE tb_servico (
     id_servico INT PRIMARY KEY AUTO_INCREMENT,
     titulo_tarefa VARCHAR(255),
     nome_cliente VARCHAR(255),
+    preco DECIMAL(10,2),
     tag_tarefa VARCHAR(255),
     status_andamento VARCHAR(255),
     data_entrega DATE
@@ -34,6 +35,7 @@ CREATE TABLE tb_mensagem (
 );
 
 INSERT INTO tb_login (ds_email, ds_senha) VALUES (
-"login.com", "senha");
+"login@email.com", "senha");
 
 SELECT * FROM tb_login;
+
