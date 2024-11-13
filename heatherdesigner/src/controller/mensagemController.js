@@ -12,7 +12,7 @@ const endpoints = Router();
 
 
 // CREATE
-endpoints.post('/mensagem', autenticar, async (req, resp) => {
+endpoints.post('/mensagem', async (req, resp) => {
     try {
         let mensagem = req.body
         const dataEnvio = new Date().toISOString().split('T')[0]; // Data atual em formato ISO 8601
