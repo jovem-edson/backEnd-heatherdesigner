@@ -15,8 +15,9 @@ const endpoints = Router();
 endpoints.post('/mensagem', autenticar, async (req, resp) => {
     try {
         let mensagem = req.body
+        const dataEnvio = new Date().toISOString().split('T')[0]; // Data atual em formato ISO 8601
 
-        let id = await inserirMensagem(mensagem);
+        let id = await inserirMensagem(mensagem, dataEnvio);
 
         resp.send({
             novoId: id

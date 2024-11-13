@@ -3,6 +3,7 @@ import consultarService from "../service/servico/consultarService.js";
 import consultarPorIdService from "../service/servico/consultarPorIdService.js";
 import alterarService from "../service/servico/alterarService.js";
 import excluirService from "../service/servico/excluirService.js";
+import consultarFaturamentoService from "../service/servico/consultarFaturamentoService.js";
 
 
 import { autenticar } from "../utils/jwt.js";
@@ -58,6 +59,21 @@ endpoints.get('/servico/:id', autenticar, async (req, resp) => {
         })
     }
 })
+
+endpoints.get('/faturamento', autenticar, async (req, resp) => {
+    try {
+
+        let faturamento = await consultarFaturamentoService();
+        resp.send(faturamento);
+    }
+    catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
+
 
 // UPDATE
 endpoints.put('/servico/:id', autenticar, async (req, resp) => {

@@ -67,6 +67,24 @@ export async function buscarPorId(id) {
     return registros[0];
 }
 
+export async function buscarFaturamento() {
+    const comando = `
+    SELECT 
+    CONCAT(MONTH(data_entrega), '/', YEAR(data_entrega)) AS mesAno,
+    SUM(preco) AS valorFaturamentoMensal
+FROM 
+    tb_servico
+GROUP BY 
+    YEAR(data_entrega),
+    MONTH(data_entrega)
+ORDER BY 
+    YEAR(data_entrega) DESC, MONTH(data_entrega) DESC;
+    `
+
+    let [registros] = await con.query(comando);
+    return registros;
+}
+
 
 
 
