@@ -81,7 +81,7 @@ endpoints.put('/mensagem/:id', autenticar, async (req, resp) => {
 })
 
 // DELETE
-endpoints.delete('/mensagem/:id', async (req, resp) => {
+endpoints.delete('/mensagem/:id', autenticar ,async (req, resp) => {
     try {
         let idParaDeletar = Number(req.params.id);
         await excluirMensagem(idParaDeletar);
